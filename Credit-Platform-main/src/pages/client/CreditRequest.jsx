@@ -21,13 +21,14 @@ import {
   FiTruck,
   FiShoppingBag,
 } from "react-icons/fi"
+import TableauCharges from "../../components/credit/TableauCharges" // Import du composant TableauCharges
 
 /**
  * Composants stylisés pour la page de demande de crédit
  */
 const RequestContainer = styled.div`
   animation: fadeIn 0.5s ease-out;
-  
+
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -43,14 +44,14 @@ const RequestContainer = styled.div`
 // En-tête de la page
 const PageHeader = styled.div`
   margin-bottom: 2rem;
-  
+
   .page-title {
     font-size: 1.5rem;
     font-weight: 600;
     color: #111827;
     margin-bottom: 0.5rem;
   }
-  
+
   .page-description {
     font-size: 1rem;
     color: #6B7280;
@@ -68,9 +69,9 @@ const ProgressBar = styled.div`
   justify-content: space-between;
   position: relative;
   margin-bottom: 2rem;
-  
+
   &::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 0;
@@ -80,7 +81,7 @@ const ProgressBar = styled.div`
     transform: translateY(-50%);
     z-index: 0;
   }
-  
+
   .progress {
     position: absolute;
     top: 50%;
@@ -100,7 +101,7 @@ const Step = styled.div`
   align-items: center;
   position: relative;
   z-index: 2;
-  
+
   .step-circle {
     width: 40px;
     height: 40px;
@@ -111,33 +112,33 @@ const Step = styled.div`
     font-weight: 600;
     margin-bottom: 0.5rem;
     transition: all 0.3s ease;
-    
+
     &.active {
       background-color: ${theme.colors.primary[600]};
       color: white;
     }
-    
+
     &.completed {
       background-color: ${theme.colors.primary[600]};
       color: white;
     }
-    
+
     &.pending {
       background-color: white;
       color: #6B7280;
       border: 2px solid #E5E7EB;
     }
   }
-  
+
   .step-label {
     font-size: 0.875rem;
     font-weight: 500;
     color: #6B7280;
-    
+
     &.active {
       color: ${theme.colors.primary[600]};
     }
-    
+
     &.completed {
       color: ${theme.colors.primary[600]};
     }
@@ -151,31 +152,31 @@ const FormCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   margin-bottom: 2rem;
-  
+
   .card-header {
     padding: 1.5rem;
     border-bottom: 1px solid #E5E7EB;
-    
+
     .card-title {
       font-size: 1.125rem;
       font-weight: 600;
       color: #111827;
       display: flex;
       align-items: center;
-      
+
       .title-icon {
         margin-right: 0.75rem;
         color: ${theme.colors.primary[600]};
       }
     }
-    
+
     .card-subtitle {
       font-size: 0.875rem;
       color: #6B7280;
       margin-top: 0.25rem;
     }
   }
-  
+
   .card-body {
     padding: 1.5rem;
   }
@@ -186,7 +187,7 @@ const FormGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
-  
+
   @media (min-width: 768px) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -195,11 +196,11 @@ const FormGrid = styled.div`
 // Groupe de formulaire
 const FormGroup = styled.div`
   margin-bottom: 1.5rem;
-  
+
   &.full-width {
     grid-column: 1 / -1;
   }
-  
+
   .form-label {
     display: block;
     font-size: 0.875rem;
@@ -207,7 +208,7 @@ const FormGroup = styled.div`
     color: #374151;
     margin-bottom: 0.5rem;
   }
-  
+
   .form-input {
     width: 100%;
     padding: 0.625rem 0.75rem;
@@ -215,18 +216,18 @@ const FormGroup = styled.div`
     border-radius: 0.375rem;
     font-size: 0.875rem;
     transition: all 0.2s ease;
-    
+
     &:focus {
       outline: none;
       border-color: ${theme.colors.primary[400]};
       box-shadow: 0 0 0 2px ${theme.colors.primary[100]};
     }
-    
+
     &.error {
       border-color: #EF4444;
     }
   }
-  
+
   .form-select {
     width: 100%;
     padding: 0.625rem 0.75rem;
@@ -235,20 +236,20 @@ const FormGroup = styled.div`
     font-size: 0.875rem;
     transition: all 0.2s ease;
     background-color: white;
-    
+
     &:focus {
       outline: none;
       border-color: ${theme.colors.primary[400]};
       box-shadow: 0 0 0 2px ${theme.colors.primary[100]};
     }
   }
-  
+
   .form-helper {
     font-size: 0.75rem;
     color: #6B7280;
     margin-top: 0.25rem;
   }
-  
+
   .form-error {
     font-size: 0.75rem;
     color: #EF4444;
@@ -264,12 +265,12 @@ const FileUpload = styled.div`
   text-align: center;
   transition: all 0.2s ease;
   cursor: pointer;
-  
+
   &:hover {
     border-color: ${theme.colors.primary[400]};
     background-color: ${theme.colors.primary[50]};
   }
-  
+
   .upload-icon {
     width: 48px;
     height: 48px;
@@ -281,19 +282,19 @@ const FileUpload = styled.div`
     justify-content: center;
     margin: 0 auto 1rem;
   }
-  
+
   .upload-title {
     font-size: 0.875rem;
     font-weight: 500;
     color: #111827;
     margin-bottom: 0.5rem;
   }
-  
+
   .upload-subtitle {
     font-size: 0.75rem;
     color: #6B7280;
   }
-  
+
   input[type="file"] {
     display: none;
   }
@@ -302,7 +303,7 @@ const FileUpload = styled.div`
 // Liste de fichiers
 const FileList = styled.div`
   margin-top: 1.5rem;
-  
+
   .file-item {
     display: flex;
     align-items: center;
@@ -310,7 +311,7 @@ const FileList = styled.div`
     border: 1px solid #E5E7EB;
     border-radius: 0.375rem;
     margin-bottom: 0.5rem;
-    
+
     .file-icon {
       width: 36px;
       height: 36px;
@@ -322,23 +323,23 @@ const FileList = styled.div`
       justify-content: center;
       margin-right: 0.75rem;
     }
-    
+
     .file-info {
       flex: 1;
-      
+
       .file-name {
         font-size: 0.875rem;
         font-weight: 500;
         color: #111827;
         margin-bottom: 0.25rem;
       }
-      
+
       .file-size {
         font-size: 0.75rem;
         color: #6B7280;
       }
     }
-    
+
     .file-remove {
       width: 28px;
       height: 28px;
@@ -350,7 +351,7 @@ const FileList = styled.div`
       justify-content: center;
       cursor: pointer;
       transition: all 0.2s ease;
-      
+
       &:hover {
         background-color: #FEE2E2;
         color: #EF4444;
@@ -366,10 +367,10 @@ const InfoCard = styled.div`
   border-radius: 0.5rem;
   padding: 1rem;
   margin-bottom: 1.5rem;
-  
+
   .info-content {
     display: flex;
-    
+
     .info-icon {
       width: 36px;
       height: 36px;
@@ -382,17 +383,17 @@ const InfoCard = styled.div`
       margin-right: 0.75rem;
       flex-shrink: 0;
     }
-    
+
     .info-text {
       flex: 1;
-      
+
       .info-title {
         font-size: 0.875rem;
         font-weight: 500;
         color: #111827;
         margin-bottom: 0.25rem;
       }
-      
+
       .info-description {
         font-size: 0.75rem;
         color: #6B7280;
@@ -408,45 +409,45 @@ const SummaryCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   margin-bottom: 2rem;
-  
+
   .summary-header {
     padding: 1.5rem;
     border-bottom: 1px solid #E5E7EB;
-    
+
     .summary-title {
       font-size: 1.125rem;
       font-weight: 600;
       color: #111827;
       display: flex;
       align-items: center;
-      
+
       .title-icon {
         margin-right: 0.75rem;
         color: ${theme.colors.primary[600]};
       }
     }
   }
-  
+
   .summary-body {
     padding: 1.5rem;
   }
-  
+
   .summary-list {
     .summary-item {
       display: flex;
       justify-content: space-between;
       padding: 0.75rem 0;
       border-bottom: 1px solid #E5E7EB;
-      
+
       &:last-child {
         border-bottom: none;
       }
-      
+
       .item-label {
         font-size: 0.875rem;
         color: #6B7280;
       }
-      
+
       .item-value {
         font-size: 0.875rem;
         font-weight: 500;
@@ -461,7 +462,7 @@ const FormActions = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 2rem;
-  
+
   .action-button {
     display: inline-flex;
     align-items: center;
@@ -471,38 +472,37 @@ const FormActions = styled.div`
     font-weight: 500;
     transition: all 0.2s ease;
     cursor: pointer;
-    
+
     &.primary {
       background-color: ${theme.colors.primary[600]};
       color: white;
-      border: none;
-      
+
       &:hover {
         background-color: ${theme.colors.primary[700]};
       }
-      
+
       &:disabled {
         background-color: #9CA3AF;
         cursor: not-allowed;
       }
     }
-    
+
     &.secondary {
       background-color: white;
       color: #4B5563;
       border: 1px solid #D1D5DB;
-      
+
       &:hover {
         background-color: #F9FAFB;
         color: #111827;
       }
     }
-    
+
     .button-icon {
       &.left {
         margin-right: 0.5rem;
       }
-      
+
       &.right {
         margin-left: 0.5rem;
       }
@@ -517,7 +517,7 @@ const ConfirmationCard = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   padding: 3rem 2rem;
   text-align: center;
-  
+
   .confirmation-icon {
     width: 72px;
     height: 72px;
@@ -528,20 +528,20 @@ const ConfirmationCard = styled.div`
     align-items: center;
     justify-content: center;
     margin: 0 auto 1.5rem;
-    
+
     svg {
       width: 36px;
       height: 36px;
     }
   }
-  
+
   .confirmation-title {
     font-size: 1.5rem;
     font-weight: 600;
     color: #111827;
     margin-bottom: 0.75rem;
   }
-  
+
   .confirmation-description {
     font-size: 1rem;
     color: #6B7280;
@@ -550,7 +550,7 @@ const ConfirmationCard = styled.div`
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .confirmation-reference {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -561,18 +561,18 @@ const ConfirmationCard = styled.div`
     color: #111827;
     margin-bottom: 2rem;
   }
-  
+
   .confirmation-actions {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    
+
     @media (min-width: 640px) {
       flex-direction: row;
       justify-content: center;
     }
-    
+
     .action-button {
       display: inline-flex;
       align-items: center;
@@ -582,27 +582,27 @@ const ConfirmationCard = styled.div`
       font-weight: 500;
       transition: all 0.2s ease;
       text-decoration: none;
-      
+
       &.primary {
         background-color: ${theme.colors.primary[600]};
         color: white;
-        
+
         &:hover {
           background-color: ${theme.colors.primary[700]};
         }
       }
-      
+
       &.secondary {
         background-color: white;
         color: #4B5563;
         border: 1px solid #D1D5DB;
-        
+
         &:hover {
           background-color: #F9FAFB;
           color: #111827;
         }
       }
-      
+
       .button-icon {
         margin-left: 0.5rem;
       }
@@ -781,6 +781,7 @@ const CreditRequest = () => {
   const [errors, setErrors] = useState({})
   const navigate = useNavigate()
   const [selectedCreditConfig, setSelectedCreditConfig] = useState(null)
+  const [tableauData, setTableauData] = useState(null) // State pour stocker les données du TableauCharges
 
   // Définition des étapes
   const steps = [
@@ -1194,6 +1195,11 @@ const CreditRequest = () => {
     }
   }
 
+  // Fonction pour récupérer les données du TableauCharges
+  const handleTableauDataChange = (data) => {
+    setTableauData(data)
+  }
+
   // Rendu du contenu en fonction de l'étape actuelle
   const renderStepContent = () => {
     switch (currentStep) {
@@ -1221,6 +1227,9 @@ const CreditRequest = () => {
                   </div>
                 </div>
               </InfoCard>
+
+              {/* Intégration du TableauCharges */}
+              <TableauCharges onDataChange={handleTableauDataChange} />
 
               <FormGrid>
                 <FormGroup>
@@ -1784,16 +1793,12 @@ const CreditRequest = () => {
             {steps.map((step) => (
               <Step key={step.id}>
                 <div
-                  className={`step-circle ${
-                    currentStep === step.id ? "active" : currentStep > step.id ? "completed" : "pending"
-                  }`}
+                  className={`step-circle ${currentStep === step.id ? "active" : currentStep > step.id ? "completed" : "pending"}`}
                 >
                   {currentStep > step.id ? <FiCheck size={18} /> : step.id}
                 </div>
                 <div
-                  className={`step-label ${
-                    currentStep === step.id ? "active" : currentStep > step.id ? "completed" : ""
-                  }`}
+                  className={`step-label ${currentStep === step.id ? "active" : currentStep > step.id ? "completed" : ""}`}
                 >
                   {step.label}
                 </div>
@@ -1832,4 +1837,3 @@ const CreditRequest = () => {
 }
 
 export default CreditRequest
-

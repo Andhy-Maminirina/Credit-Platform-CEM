@@ -12,7 +12,8 @@ import HomePage from "./pages/public/HomePage"
 import LoginPage from "./pages/auth/LoginPage"
 import RegisterPage from "./pages/auth/RegisterPage"
 import ForgotPasswordPage from "./pages/auth/ForgotPasswordPage"
-import OtpVerificationPage from "./pages/public/OtpVerificationPage"
+import OtpVerificationPage from "./pages/auth/OtpVerificationPage"
+
 
 // Pages crédit
 import GeneralSimulator from "./pages/credit/GeneralSimulator"
@@ -97,6 +98,7 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/forgot-password" element={<ForgotPasswordPage />} />
         <Route path="/otp-verification" element={<OtpVerificationPage />} />
+        
        
 
        {/* Routes admin - Auth */}
@@ -146,7 +148,7 @@ function App() {
               <Route path="chat" element={<Chat />} />
               <Route path="chat-history" element={<ChatHistory />} />
               <Route path="help" element={<Help />} />
-            </Route>
+          </Route>
 
         {/* Routes crédit */}
         <Route path="/credit-simulation" element={<GeneralSimulator />} />

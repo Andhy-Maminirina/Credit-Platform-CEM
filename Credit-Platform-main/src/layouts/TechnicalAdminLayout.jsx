@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FiHome, FiUsers, FiSettings, FiCreditCard, FiSliders, FiUser, FiLogOut, FiBell } from "react-icons/fi"
 import styled from "styled-components"
+import LogoCEM from "../assets/LOGO-CEM-WEB.png"
+
 
 // Composants stylisés
 const LayoutContainer = styled.div`
@@ -361,7 +363,7 @@ const TechnicalAdminLayout = ({ children }) => {
     <LayoutContainer>
       <Sidebar>
         <SidebarHeader>
-          <Logo>CEM Admin</Logo>
+          <Logo src={LogoCEM}>CEM Admin</Logo>
         </SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -373,12 +375,12 @@ const TechnicalAdminLayout = ({ children }) => {
               Tableau de bord
             </SidebarLink>
           </SidebarMenuItem>
-          <SidebarMenuItem>
+          {/* <SidebarMenuItem>
             <SidebarLink to="/admin/technical/users" active={location.pathname === "/admin/technical/users" ? 1 : 0}>
               <FiUsers size={18} />
               Gestion des utilisateurs
             </SidebarLink>
-          </SidebarMenuItem>
+          </SidebarMenuItem> */}
 
           <SidebarSection>Paramètres</SidebarSection>
 
@@ -391,7 +393,7 @@ const TechnicalAdminLayout = ({ children }) => {
               Paramètres des crédits
             </SidebarLink>
           </SidebarMenuItem>
-          <SidebarMenuItem>
+          {/* <SidebarMenuItem>
             <SidebarLink
               to="/admin/technical/system-settings"
               active={location.pathname === "/admin/technical/system-settings" ? 1 : 0}
@@ -399,7 +401,7 @@ const TechnicalAdminLayout = ({ children }) => {
               <FiSliders size={18} />
               Paramètres système
             </SidebarLink>
-          </SidebarMenuItem>
+          </SidebarMenuItem> */}
           <SidebarMenuItem>
             <SidebarLink
               to="/admin/technical/profile"

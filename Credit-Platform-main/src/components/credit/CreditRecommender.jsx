@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 import { FiInfo, FiDollarSign, FiUser, FiBriefcase, FiArrowRight } from "react-icons/fi"
 // Importer le service d'éligibilité
 import { checkEligibility, getExistingLoans } from "../../services/eligibilityService"
+import TableauCharges from "./TableauCharges" // Import du composant TableauCharges
 
 const RecommenderContainer = styled.div`
   background: white;
@@ -16,9 +17,7 @@ const RecommenderContainer = styled.div`
 `
 
 const RecommenderHeader = styled.div`
-  background: linear-gradient(135deg, 
-    ${(props) => props.theme.colors.primary[600]} 0%, 
-    ${(props) => props.theme.colors.primary[500]} 100%);
+  background: linear-gradient(135deg, ${(props) => props.theme.colors.primary[600]} 0%, ${(props) => props.theme.colors.primary[500]} 100%);
   padding: 1.5rem;
   color: white;
 `
@@ -61,7 +60,7 @@ const Label = styled.label`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  
+
   svg {
     color: ${(props) => props.theme.colors.primary[500]};
   }
@@ -74,13 +73,14 @@ const Input = styled.input`
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.2s;
-  
+
   &:focus {
     outline: none;
+
     border-color: ${(props) => props.theme.colors.primary[600]};
     box-shadow: 0 0 0 3px ${(props) => props.theme.colors.primary[100]};
   }
-  
+
   &::placeholder {
     color: ${(props) => props.theme.colors.gray[400]};
   }
@@ -88,11 +88,11 @@ const Input = styled.input`
 
 const InputWithIcon = styled.div`
   position: relative;
-  
+
   input {
     padding-left: 2.5rem;
   }
-  
+
   svg {
     position: absolute;
     left: 0.75rem;
@@ -114,7 +114,7 @@ const Select = styled.select`
   background-position: right 0.75rem center;
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
-  
+
   &:focus {
     outline: none;
     border-color: ${(props) => props.theme.colors.primary[600]};
@@ -137,17 +137,17 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  
+
   &:hover {
     background-color: ${(props) => props.theme.colors.primary[700]};
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 65, 54, 0.2);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
-  
+
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
@@ -165,13 +165,13 @@ const InfoBox = styled.div`
   display: flex;
   gap: 0.75rem;
   align-items: flex-start;
-  
+
   svg {
     color: ${(props) => props.theme.colors.info};
     flex-shrink: 0;
     margin-top: 0.125rem;
   }
-  
+
   p {
     font-size: 0.875rem;
     color: ${(props) => props.theme.colors.gray[700]};
@@ -204,7 +204,7 @@ const RecommendationButton = styled(Button)`
   max-width: 300px;
   margin: 0 auto;
   background-color: #166534;
-  
+
   &:hover {
     background-color: #14532d;
   }
@@ -218,9 +218,11 @@ const LoadingSpinner = styled.div`
   border-radius: 50%;
   border-top-color: white;
   animation: spin 1s ease-in-out infinite;
-  
+
   @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+      transform: rotate(360deg);
+    }
   }
 `
 
@@ -236,6 +238,7 @@ const CreditRecommender = () => {
 
   const [loading, setLoading] = useState(false)
   const [recommendation, setRecommendation] = useState(null)
+  const [tableauData, setTableauData] = useState(null) // State pour stocker les données du TableauCharges
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -277,7 +280,8 @@ const CreditRecommender = () => {
         const hasFixedIncome = formData.hasFixedIncome === "yes"
         const isBusinessOwner = formData.isBusinessOwner === "yes"
         const businessSize = formData.businessSize
-        const monthlySalary = Number.parseFloat(formData.monthlySalary) || 0
+        // Utiliser le salaire mensuel du TableauCharges si disponible, sinon celui du formulaire
+        const monthlySalary = tableauData?.revenus?.salaireClient || Number.parseFloat(formData.monthlySalary) || 0
 
         const recommendedCredit = {
           type: "",
@@ -403,20 +407,6 @@ const CreditRecommender = () => {
         const existingLoansResponse = await getExistingLoans(clientId)
         const existingLoans = existingLoansResponse.data || []
 
-        // Calculer la mensualité approximative pour vérifier l'éligibilité
-        let interestRate = 0.02 // Taux par défaut
-        if (recommendedCredit.type === "SAFIDY") {
-          interestRate = 0.0185
-        } else if (recommendedCredit.subType === "AINGA") {
-          interestRate = 0.022
-        } else if (recommendedCredit.subType === "MIHARY") {
-          interestRate = 0.02
-        } else if (recommendedCredit.subType === "ROSO") {
-          interestRate = 0.018
-        } else if (recommendedCredit.subType === "AMBOARA") {
-          interestRate = 0.017
-        }
-
         // Préparer les données pour la vérification d'éligibilité
         const eligibilityData = {
           monthlySalary,
@@ -465,6 +455,11 @@ const CreditRecommender = () => {
     }
   }
 
+  // Fonction pour récupérer les données du TableauCharges
+  const handleTableauDataChange = (data) => {
+    setTableauData(data)
+  }
+
   return (
     <RecommenderContainer>
       <RecommenderHeader>
@@ -477,6 +472,9 @@ const CreditRecommender = () => {
       <RecommenderBody>
         {!recommendation ? (
           <RecommenderForm onSubmit={handleSubmit}>
+            {/* Intégration du TableauCharges */}
+            <TableauCharges onDataChange={handleTableauDataChange} />
+
             <FormRow>
               <FormGroup>
                 <Label>
@@ -576,7 +574,7 @@ const CreditRecommender = () => {
           >
             <RecommendationTitle>Recommandation de crédit</RecommendationTitle>
             <RecommendationText>
-              Après analyse de notre algorithme, le crédit le plus adapté pour vous est :{" "}
+              Après analyse de notre algorithme, le crédit le plus adapté pour vous est:{" "}
               <strong>
                 {recommendation.type} {recommendation.subType && recommendation.subType}
               </strong>
@@ -641,4 +639,3 @@ const CreditRecommender = () => {
 }
 
 export default CreditRecommender
-

@@ -527,13 +527,22 @@ const CreditSettings = () => {
           </CreditCardHeader>
 
           {expandedSection === "safidy" && (
+            
             <CreditCardBody>
               <FormGrid>
+                <FormField suffix="%">
+                  <label>Nom du credit</label>
+                  <div className="input-wrapper">
+                    <input type="text" 
+                    
+                    />
+                  </div>
+                </FormField>
                 <FormField suffix="%">
                   <label>Taux d'intérêt (%)</label>
                   <div className="input-wrapper">
                     <input
-                      type="number"
+                      type="text"
                       step="0.1"
                       min="0"
                       value={creditParams.safidy.interestRate}
@@ -542,12 +551,11 @@ const CreditSettings = () => {
                     <span className="suffix">%</span>
                   </div>
                 </FormField>
-
                 <FormField suffix="Ar">
                   <label>Montant minimum</label>
                   <div className="input-wrapper">
                     <input
-                      type="number"
+                      type="text"
                       step="100000"
                       min="0"
                       value={creditParams.safidy.minAmount}
@@ -564,7 +572,7 @@ const CreditSettings = () => {
                   <label>Montant maximum</label>
                   <div className="input-wrapper">
                     <input
-                      type="number"
+                      type="text"
                       step="1000000"
                       min="0"
                       value={creditParams.safidy.maxAmount}
@@ -581,7 +589,7 @@ const CreditSettings = () => {
                   <label>Durée minimum (mois)</label>
                   <div className="input-wrapper">
                     <input
-                      type="number"
+                      type="text"
                       step="1"
                       min="1"
                       value={creditParams.safidy.minDuration}
@@ -595,7 +603,7 @@ const CreditSettings = () => {
                   <label>Durée maximum (mois)</label>
                   <div className="input-wrapper">
                     <input
-                      type="number"
+                      type="text"
                       step="1"
                       min="1"
                       value={creditParams.safidy.maxDuration}
@@ -609,7 +617,7 @@ const CreditSettings = () => {
                   <label>Frais de dossier (%)</label>
                   <div className="input-wrapper">
                     <input
-                      type="number"
+                      type="text"
                       step="0.1"
                       min="0"
                       value={creditParams.safidy.processingFee}
@@ -626,7 +634,7 @@ const CreditSettings = () => {
                   <label>Revenu minimum</label>
                   <div className="input-wrapper">
                     <input
-                      type="number"
+                      type="text"
                       step="10000"
                       min="0"
                       value={creditParams.safidy.eligibilityCriteria.minIncome}
@@ -643,7 +651,7 @@ const CreditSettings = () => {
                   <label>Durée d'emploi minimum (mois)</label>
                   <div className="input-wrapper">
                     <input
-                      type="number"
+                      type="text"
                       step="1"
                       min="0"
                       value={creditParams.safidy.eligibilityCriteria.minEmploymentDuration}
@@ -657,7 +665,7 @@ const CreditSettings = () => {
                   <label>Ratio dette/revenu maximum (%)</label>
                   <div className="input-wrapper">
                     <input
-                      type="number"
+                      type="text"
                       step="1"
                       min="0"
                       max="100"
@@ -696,6 +704,12 @@ const CreditSettings = () => {
           {expandedSection === "avotraAinga" && (
             <CreditCardBody>
               <FormGrid>
+              <FormField suffix="%">
+                  <label>Nom du credit</label>
+                  <div className="input-wrapper">
+                    <input type="text" />
+                  </div>
+                </FormField>
                 <FormField suffix="%">
                   <label>Taux d'intérêt (%)</label>
                   <div className="input-wrapper">
@@ -863,6 +877,12 @@ const CreditSettings = () => {
           {expandedSection === "avotraMihary" && (
             <CreditCardBody>
               <FormGrid>
+              <FormField suffix="%">
+                  <label>Nom du credit</label>
+                  <div className="input-wrapper">
+                    <input type="text" />
+                  </div>
+                </FormField>
                 <FormField suffix="%">
                   <label>Taux d'intérêt (%)</label>
                   <div className="input-wrapper">
@@ -1030,6 +1050,12 @@ const CreditSettings = () => {
           {expandedSection === "avotraRoso" && (
             <CreditCardBody>
               <FormGrid>
+              <FormField suffix="%">
+                  <label>Nom du credit</label>
+                  <div className="input-wrapper">
+                    <input type="text" />
+                  </div>
+                </FormField>
                 <FormField suffix="%">
                   <label>Taux d'intérêt (%)</label>
                   <div className="input-wrapper">
@@ -1196,6 +1222,12 @@ const CreditSettings = () => {
           {expandedSection === "avotraAmboara" && (
             <CreditCardBody>
               <FormGrid>
+              <FormField suffix="%">
+                  <label>Nom du credit</label>
+                  <div className="input-wrapper">
+                    <input type="text" />
+                  </div>
+                </FormField>
                 <FormField suffix="%">
                   <label>Taux d'intérêt (%)</label>
                   <div className="input-wrapper">

@@ -402,15 +402,7 @@ const SystemSettings = () => {
           </SettingsCardHeader>
           <SettingsCardBody>
             <FormGrid>
-              <FormField>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Nom du site</label>
-                <input
-                  type="text"
-                  value={settings.general.siteName}
-                  onChange={(e) => handleInputChange("general", "siteName", e.target.value)}
-                  className="focus:ring-red-500 focus:border-red-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-                />
-              </FormField>
+              
               <FormField>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Email de contact</label>
                 <input
@@ -451,7 +443,7 @@ const SystemSettings = () => {
         </SettingsCard>
 
         {/* Security Settings */}
-        <SettingsCard>
+       {/*  <SettingsCard>
           <SettingsCardHeader>
             <h3 className="text-lg font-semibold text-gray-900">Paramètres de sécurité</h3>
           </SettingsCardHeader>
@@ -514,10 +506,10 @@ const SystemSettings = () => {
               </FormField>
             </FormGrid>
           </SettingsCardBody>
-        </SettingsCard>
+        </SettingsCard> */}
 
         {/* Notification Settings */}
-        <SettingsCard>
+        {/* <SettingsCard>
           <SettingsCardHeader>
             <h3 className="text-lg font-semibold text-gray-900">Paramètres de notification</h3>
           </SettingsCardHeader>
@@ -587,7 +579,7 @@ const SystemSettings = () => {
               </FormField>
             </FormGrid>
           </SettingsCardBody>
-        </SettingsCard>
+        </SettingsCard> */}
 
         {/* System Settings */}
         <SettingsCard>

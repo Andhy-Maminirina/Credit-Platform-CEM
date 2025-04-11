@@ -3,8 +3,18 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { motion } from "framer-motion"
-import { FiArrowRight, FiCheck, FiCreditCard, FiBriefcase, FiMessageCircle } from "react-icons/fi"
-import Footer from "../../components/public/Footer"
+import {
+  FiArrowRight,
+  FiCheck,
+  FiCreditCard,
+  FiBriefcase,
+  FiMessageCircle,
+  FiExternalLink,
+  FiLink,
+  FiDatabase,
+  FiShield,
+  FiSearch,
+} from "react-icons/fi"
 import Button from "../../components/ui/Button"
 import ChatBot from "../../components/chat/ChatBot"
 
@@ -430,6 +440,91 @@ const ProductButton = styled(Link)`
   }
 `
 
+// Nouvelle section pour les liens partenaires
+const PartnersSection = styled.section`
+  padding: 5rem 2rem;
+  background-color: ${(props) => props.theme.colors.gray[50]};
+  border-top: 1px solid ${(props) => props.theme.colors.gray[200]};
+`
+
+const PartnersGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+`
+
+const PartnerCard = styled(motion.a)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid ${(props) => props.theme.colors.gray[200]};
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    border-color: ${(props) => props.theme.colors.primary[300]};
+  }
+`
+
+const PartnerIconCircle = styled.div`
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: ${(props) => props.theme.colors.primary[50]};
+  color: ${(props) => props.theme.colors.primary[600]};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  
+  ${PartnerCard}:hover & {
+    background: ${(props) => props.theme.colors.primary[100]};
+    transform: scale(1.1);
+  }
+`
+
+const PartnerTitle = styled.h3`
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: ${(props) => props.theme.colors.gray[900]};
+  text-align: center;
+`
+
+const PartnerDescription = styled.p`
+  font-size: 0.875rem;
+  color: ${(props) => props.theme.colors.gray[600]};
+  text-align: center;
+  margin-bottom: 1rem;
+`
+
+const ExternalLinkText = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: ${(props) => props.theme.colors.primary[600]};
+  font-weight: 500;
+  margin-top: auto;
+  
+  svg {
+    margin-left: 0.25rem;
+    transition: transform 0.3s ease;
+  }
+  
+  ${PartnerCard}:hover & svg {
+    transform: translateX(4px);
+  }
+`
+
 // Modifier le rendu du composant pour supprimer le Header et ajouter les boutons de navigation
 const HomePage = () => {
   const [isChatOpen, setIsChatOpen] = useState(false)
@@ -441,7 +536,6 @@ const HomePage = () => {
   return (
     <Container>
       <LogoContainer>
-        
         <AssistantButton onClick={toggleChat} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
           <FiMessageCircle size={18} />
           Assistant Virtuel
@@ -638,9 +732,133 @@ const HomePage = () => {
         </SectionContent>
       </ProductsSection>
 
+      {/* Nouvelle section pour les liens partenaires */}
+      <PartnersSection>
+        <SectionContent>
+          <SectionTitle
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Nos Partenaires
+          </SectionTitle>
+
+          <SectionSubtitle
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            Accédez aux services de nos partenaires pour faciliter vos démarches
+          </SectionSubtitle>
+
+          <PartnersGrid>
+            <PartnerCard
+              href="http://192.168.1.15:8080/ords/r/wsptatitra/suivi-de-cr%C3%A9dit/login?session=12555045402700"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <PartnerIconCircle>
+                <FiDatabase size={24} />
+              </PartnerIconCircle>
+              <PartnerTitle>BI</PartnerTitle>
+              <PartnerDescription>
+                Accédez au système de suivi de crédit pour consulter vos informations
+              </PartnerDescription>
+              <ExternalLinkText>
+                Accéder au service <FiExternalLink size={16} />
+              </ExternalLinkText>
+            </PartnerCard>
+
+            <PartnerCard
+              href="https://nyvolako.mg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <PartnerIconCircle>
+                <FiLink size={24} />
+              </PartnerIconCircle>
+              <PartnerTitle>NY VOLAKO</PartnerTitle>
+              <PartnerDescription>Plateforme de services financiers et d'information</PartnerDescription>
+              <ExternalLinkText>
+                Visiter le site <FiExternalLink size={16} />
+              </ExternalLinkText>
+            </PartnerCard>
+
+            <PartnerCard
+              href="https://web.bicmadagascar.crif.com/Account/Login?ReturnUrl=%2f"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <PartnerIconCircle>
+                <FiSearch size={24} />
+              </PartnerIconCircle>
+              <PartnerTitle>BIC Madagascar</PartnerTitle>
+              <PartnerDescription>Bureau d'Information sur le Crédit pour vérifier votre historique</PartnerDescription>
+              <ExternalLinkText>
+                Consulter <FiExternalLink size={16} />
+              </ExternalLinkText>
+            </PartnerCard>
+
+            <PartnerCard
+              href="https://cdr.bfm.mg/CRMWeb/page/authentification.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <PartnerIconCircle>
+                <FiDatabase size={24} />
+              </PartnerIconCircle>
+              <PartnerTitle>CDR</PartnerTitle>
+              <PartnerDescription>Central Des Risques - Base de données nationale sur les crédits</PartnerDescription>
+              <ExternalLinkText>
+                Accéder au service <FiExternalLink size={16} />
+              </ExternalLinkText>
+            </PartnerCard>
+
+            <PartnerCard
+              href="#"
+              onClick={(e) => {
+                e.preventDefault()
+                alert("Application KYC CGB en cours de développement")
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <PartnerIconCircle>
+                <FiShield size={24} />
+              </PartnerIconCircle>
+              <PartnerTitle>KYC CGB</PartnerTitle>
+              <PartnerDescription>
+                Application de vérification d'identité (en cours de développement)
+              </PartnerDescription>
+              <ExternalLinkText>
+                Bientôt disponible <FiExternalLink size={16} />
+              </ExternalLinkText>
+            </PartnerCard>
+          </PartnersGrid>
+        </SectionContent>
+      </PartnersSection>
     </Container>
   )
 }
 
 export default HomePage
-

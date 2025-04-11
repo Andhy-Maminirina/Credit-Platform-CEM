@@ -17,6 +17,7 @@ import {
 
 // Importer le service d'éligibilité
 import { checkEligibility, getExistingLoans } from "../../services/eligibilityService"
+import TableauCharges from "./TableauCharges" // Import du composant TableauCharges
 
 const SimulatorContainer = styled.div`
   background: white;
@@ -26,9 +27,7 @@ const SimulatorContainer = styled.div`
 `
 
 const SimulatorHeader = styled.div`
-  background: linear-gradient(135deg, 
-    ${(props) => props.theme.colors.primary[600]} 0%, 
-    ${(props) => props.theme.colors.primary[500]} 100%);
+  background: linear-gradient(135deg, ${(props) => props.theme.colors.primary[600]} 0%, ${(props) => props.theme.colors.primary[500]} 100%);
   padding: 1.5rem;
   color: white;
 `
@@ -71,7 +70,7 @@ const Label = styled.label`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  
+
   svg {
     color: ${(props) => props.theme.colors.primary[500]};
   }
@@ -84,13 +83,13 @@ const Input = styled.input`
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.2s;
-  
+
   &:focus {
     outline: none;
     border-color: ${(props) => props.theme.colors.primary[600]};
     box-shadow: 0 0 0 3px ${(props) => props.theme.colors.primary[100]};
   }
-  
+
   &::placeholder {
     color: ${(props) => props.theme.colors.gray[400]};
   }
@@ -98,11 +97,11 @@ const Input = styled.input`
 
 const InputWithIcon = styled.div`
   position: relative;
-  
+
   input {
     padding-left: 2.5rem;
   }
-  
+
   svg {
     position: absolute;
     left: 0.75rem;
@@ -124,7 +123,7 @@ const Select = styled.select`
   background-position: right 0.75rem center;
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
-  
+
   &:focus {
     outline: none;
     border-color: ${(props) => props.theme.colors.primary[600]};
@@ -147,17 +146,17 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  
+
   &:hover {
     background-color: ${(props) => props.theme.colors.primary[700]};
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(255, 65, 54, 0.2);
   }
-  
+
   &:active {
     transform: translateY(0);
   }
-  
+
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
@@ -190,7 +189,7 @@ const ResultTitle = styled.h4`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  
+
   svg {
     color: ${(props) => props.theme.colors.primary[600]};
   }
@@ -210,7 +209,7 @@ const ResultItem = styled.div`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   border: 1px solid ${(props) => (props.highlight ? props.theme.colors.primary[100] : props.theme.colors.gray[100])};
   transition: all 0.2s;
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -237,25 +236,26 @@ const AmortizationTable = styled.div`
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
-  
-  th, td {
+
+  th,
+  td {
     padding: 0.75rem 1rem;
     text-align: left;
     border-bottom: 1px solid ${(props) => props.theme.colors.gray[200]};
   }
-  
+
   th {
     background-color: ${(props) => props.theme.colors.gray[50]};
     font-weight: 600;
     font-size: 0.875rem;
     color: ${(props) => props.theme.colors.gray[700]};
   }
-  
+
   td {
     font-size: 0.875rem;
     color: ${(props) => props.theme.colors.gray[700]};
   }
-  
+
   tr:hover td {
     background-color: ${(props) => props.theme.colors.gray[50]};
   }
@@ -270,13 +270,13 @@ const InfoBox = styled.div`
   display: flex;
   gap: 0.75rem;
   align-items: flex-start;
-  
+
   svg {
     color: ${(props) => (props.type === "warning" ? props.theme.colors.warning : props.type === "success" ? props.theme.colors.success : props.theme.colors.info)};
     flex-shrink: 0;
     margin-top: 0.125rem;
   }
-  
+
   p {
     font-size: 0.875rem;
     color: ${(props) => props.theme.colors.gray[700]};
@@ -309,7 +309,7 @@ const RecommendationButton = styled(Button)`
   max-width: 250px;
   margin: 0 auto;
   background-color: #166534;
-  
+
   &:hover {
     background-color: #14532d;
   }
@@ -325,7 +325,7 @@ const EligibilityBadge = styled.div`
   font-weight: 600;
   background-color: ${(props) => (props.isEligible ? "#10B98120" : "#EF444420")};
   color: ${(props) => (props.isEligible ? "#10B981" : "#EF4444")};
-  
+
   svg {
     flex-shrink: 0;
   }
@@ -338,7 +338,7 @@ const Slider = styled.input`
   border-radius: 3px;
   background: ${(props) => props.theme.colors.gray[200]};
   outline: none;
-  
+
   &::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -348,13 +348,13 @@ const Slider = styled.input`
     background: ${(props) => props.theme.colors.primary[600]};
     cursor: pointer;
     transition: all 0.2s;
-    
+
     &:hover {
       transform: scale(1.2);
       background: ${(props) => props.theme.colors.primary[700]};
     }
   }
-  
+
   &::-moz-range-thumb {
     width: 20px;
     height: 20px;
@@ -363,7 +363,7 @@ const Slider = styled.input`
     cursor: pointer;
     transition: all 0.2s;
     border: none;
-    
+
     &:hover {
       transform: scale(1.2);
       background: ${(props) => props.theme.colors.primary[700]};
@@ -375,7 +375,7 @@ const SliderLabels = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 0.5rem;
-  
+
   span {
     font-size: 0.75rem;
     color: ${(props) => props.theme.colors.gray[500]};
@@ -390,9 +390,11 @@ const LoadingSpinner = styled.div`
   border-radius: 50%;
   border-top-color: white;
   animation: spin 1s ease-in-out infinite;
-  
+
   @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+      transform: rotate(360deg);
+    }
   }
 `
 
@@ -425,6 +427,7 @@ const CreditSimulator = ({
   const [loading, setLoading] = useState(false)
   const [showAmortizationTable, setShowAmortizationTable] = useState(false)
   const [recommendedCredit, setRecommendedCredit] = useState(null)
+  const [tableauData, setTableauData] = useState(null) // State pour stocker les données du TableauCharges
 
   // Définir les limites selon le type de crédit
   const [limits, setLimits] = useState({
@@ -551,6 +554,7 @@ const CreditSimulator = ({
       // Vérifier que les paramètres sont valides
       if (!amount || amount <= 0 || !duration || duration <= 0) {
         console.error("Paramètres invalides pour le calcul de mensualité:", { amount, rate, duration })
+
         return 0
       }
 
@@ -693,7 +697,9 @@ const CreditSimulator = ({
         // Convertir les valeurs en nombres
         const amount = Number.parseFloat(formData.amount) || 0
         const duration = Number.parseInt(formData.duration) || 12
-        const monthlySalary = Number.parseFloat(formData.monthlySalary) || 0
+
+        // Utiliser le salaire mensuel du TableauCharges si disponible, sinon celui du formulaire
+        const monthlySalary = tableauData?.revenus?.salaireClient || Number.parseFloat(formData.monthlySalary) || 0
 
         // Vérifier que les valeurs sont valides
         if (amount <= 0) {
@@ -865,6 +871,11 @@ const CreditSimulator = ({
     }
   }
 
+  // Fonction pour récupérer les données du TableauCharges
+  const handleTableauDataChange = (data) => {
+    setTableauData(data)
+  }
+
   // 3. Ajouter une vérification pour s'assurer que le résultat est affiché
   useEffect(() => {
     if (result) {
@@ -900,6 +911,9 @@ const CreditSimulator = ({
 
       <SimulatorBody>
         <SimulatorForm onSubmit={handleSubmit}>
+          {/* Intégration du TableauCharges */}
+          <TableauCharges onDataChange={handleTableauDataChange} />
+
           {isGeneralSimulator && (
             <>
               <FormRow>
@@ -1062,17 +1076,13 @@ const CreditSimulator = ({
           <Button type="submit" disabled={loading}>
             {loading ? <LoadingSpinner /> : "Simuler mon crédit"}
           </Button>
-          {/* Ajouter un bouton de débogage en mode développement (à commenter en production) */}
-          <button type="button" onClick={debugFormData} style={{ marginTop: "10px", fontSize: "12px" }}>
-            Debug
-          </button>
         </SimulatorForm>
 
         {recommendedCredit && (
           <RecommendationBox>
             <RecommendationTitle>Recommandation de crédit</RecommendationTitle>
             <RecommendationText>
-              Après analyse de notre algorithme, le crédit le plus adapté pour vous est :{" "}
+              Après analyse de notre algorithme, le crédit le plus adapté pour vous est:{" "}
               <strong>{recommendedCredit.subType || recommendedCredit.type}</strong>
             </RecommendationText>
             <RecommendationText>{recommendedCredit.reason}</RecommendationText>
@@ -1286,4 +1296,3 @@ const CreditSimulator = ({
 }
 
 export default CreditSimulator
-

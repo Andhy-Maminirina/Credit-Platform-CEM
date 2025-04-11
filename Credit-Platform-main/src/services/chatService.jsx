@@ -537,7 +537,5 @@ const chatService = {
 )
 }
 
-export default ClientChatHistory
 
-"
 

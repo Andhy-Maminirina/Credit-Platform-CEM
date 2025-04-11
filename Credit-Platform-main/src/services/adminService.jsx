@@ -21,3 +21,4 @@ export const adminService = {
   deleteAdminAccount: (id) => api.delete(`/admin/technical/admin-accounts/${id}`),
 }
 
++
